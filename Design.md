@@ -87,7 +87,7 @@ Rep Invariant:
 * `review_id` of one `Review` cannot be the same as the `review_id` of another `Review`  
 * `stars` cannot be negative  
 * `date` must be in the format `YYYY-MM-DD` where `0 <= YYYY <= 2017` , `1 <= MM <= 12` ,  
-if `MM == 01 || 03 || 05 || 07 || 08 || 10 || 12` `1 <= DD <= 31  
+if `MM == 01 || 03 || 05 || 07 || 08 || 10 || 12` `1 <= DD <= 31`  
 if `MM == 04 || 06 || 09 || 11` `1 <= DD <= 30`  
 if `(MM == 02) && (YYYY % 4 == 0)` `1 <= DD <= 29`  
 if `(MM == 02) && (YYYY % 4 != 0)` `1 <= DD <= 28`  
