@@ -1,7 +1,22 @@
-Design Decisions for Machine Problem 5  
+MP5 Design Decisions - Andrea Mah and Robin Reyes    
 ===  
   
 ## Datatypes to Implement the Database  
+  
+### `YelpDB`
+Datatype that represents Yelp's restaurant dataset  
+Has the following fields:  
+* `List<Restaurant>` `Restaurants` - list of `Restaurant`s that exist on Yelp  
+* `List<Review>` `Reviews` - list of `Review`s that exist on Yelp  
+* `List<YelpUser>` `YelpUsers` - list of `YelpUsers` that exist on Yelp  
+  
+Has the following methods:  
+* `List<Review> usersReviews(YelpUser reviewer)` - given a `YelpUser`, return a list of all `Reviews` submitted by that `YelpUser`  
+* `List<Review> bestAndWorst(Restaurant restaurant)` - given a `restaurant`, return a List containing its best `Review` in the first entry of the List and its worst `Review` in the second entry  
+* `List<Restaurant> closeRestaurants(double latitude, double longitude, double radius)` - given a `latitude` and `longitude`, returns a list that contains all restaurants contained in that `radius` in order of distance to the centre  
+* `List<Restaurant> threeBest()` - returns of a List of the three best `Restaurant`s in `YelpDB`  
+* `List<Restaurant> relatedRestaurants(Restaurant restaurant)` - given a `restaurant`, returns a list of other `Restaurant`s with the same category  
+
   
 ### `Business`  
 Supertype to represent businesses of all types (hospitals, stores, etc.)  
