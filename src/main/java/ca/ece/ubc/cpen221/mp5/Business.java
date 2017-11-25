@@ -9,18 +9,18 @@ package ca.ece.ubc.cpen221.mp5;
  * 
  */
 public class Business {
-	private boolean open; //represents if the business is still running or not
-	private String url; //the the link which points to the business's page in the database
-	private double latitude; //represents the geographic location of the business on the map
-	private double longitude; //collection of neighborhoods a business is a part of
-	private String[] neighborhoods; //string that represents each business's business ID
-	private String business_id; //string that represents the name of the business
-	private String name; //collection of tags that the business is associated to
-	private String[] categories; //state the business is located in
-	private String state; //state the business is located in
-	private String type; //represents the type of datatype in the database
-	private String city; //the city the business is located in
-	private String full_address; //the address of the business
+	protected boolean open; //represents if the business is still running or not
+	protected String url; //the the link which points to the business's page in the database
+	protected double latitude; //represents the geographic location of the business on the map
+	protected double longitude; //collection of neighborhoods a business is a part of
+	protected String[] neighborhoods; //string that represents each business's business ID
+	protected String business_id; //string that represents the name of the business
+	protected String name; //collection of tags that the business is associated to
+	protected String[] categories; //state the business is located in
+	protected String state; //state the business is located in
+	protected String type; //represents the type of datatype in the database
+	protected String city; //the city the business is located in
+	protected String full_address; //the address of the business
 	
 	public Business(boolean open, String url, double latitude, double longitude, 
 			String[] neighborhoods,String business_id,String name, String[] categories,

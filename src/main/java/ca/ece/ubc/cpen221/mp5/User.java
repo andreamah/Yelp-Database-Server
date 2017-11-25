@@ -7,16 +7,15 @@ package ca.ece.ubc.cpen221.mp5;
  *
  */
 public class User {
-	private String url; //the the link which points to the user's personal page on the web service
-	private String type; //represents the type of datatype in the database
-	private String user_id; //string that represents each user's user ID
-	private String name; //string that represents the name associated with the owner of theuser` account
+	protected String url; //the the link which points to the user's personal page on the web service
+	protected String type; //represents the type of datatype in the database
+	protected String user_id; //string that represents each user's user ID
+	protected String name; //string that represents the name associated with the owner of theuser` account
 
 	public User(String url, String type, String user_id, String name) {
 		this.url = url;
 		this.type = type;
 		this.user_id = user_id;
-		this.name = name;
 	}
 
 }
