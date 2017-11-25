@@ -5,9 +5,9 @@ import java.util.Set;
 import java.util.function.ToDoubleBiFunction;
 
 public class YelpDB implements MP5Db{
-	private ArrayList<Restaurant> Restaurants;
-	private ArrayList<Review> Reviews;
-	private ArrayList<YelpUser> YelpUsers; 
+	private ArrayList<Restaurant> Restaurants; //list of Restaurants that exist on Yelp
+	private ArrayList<Review> Reviews; //list of Reviews that exist on Yelp
+	private ArrayList<YelpUser> YelpUsers; //list of YelpUsers that exist on Yelp
 	
 	public YelpDB(ArrayList<Restaurant> restaurants, ArrayList<Review> reviews, ArrayList<YelpUser> yelpUsers) {
 		this.Restaurants = restaurants;
