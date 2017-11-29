@@ -8,7 +8,7 @@ Datatype that represents Yelp's restaurant dataset
 Has the following fields:  
 * `List<Restaurant>` `Restaurants` - list of `Restaurant`s that exist on Yelp  
 * `List<Review>` `Reviews` - list of `Review`s that exist on Yelp  
-* `List<YelpUser>` `YelpUsers` - list of `YelpUsers` that exist on Yelp  
+* `List<YelpUser>` `YelpUsers` - list of `YelpUser`s that exist on Yelp  
   
 Has the following methods:  
 * `List<Review> usersReviews(YelpUser reviewer)` - given a `YelpUser`, return a list of all `Reviews` submitted by that `YelpUser`  
@@ -29,7 +29,6 @@ Has the following fields:
 * `String` `name` - string that represents the name of the business  
 * `String[]` `categories` - collection of tags that the business is associated to  
 * `String` `state` - state the business is located in  
-* `String` `type` - represents the type of datatype in the database  
 * `String` `city` - the city the business is located in  
 * `String` `full_address` - the address of the business  
   
@@ -62,10 +61,9 @@ Rep Invariant:
 ### `User`  
 Supertype to represent a `User` of any kind of web service (Facebook user, Gmail user, etc.)  
 Has the following fields:  
-* `String` `url`- the the link which points to the user's personal page on the web service  
-* `String` `type` - represents the type of datatype in the database  
+* `String` `url`- the the link which points to the user's personal page on the web service    
 * `String` `user_id` - string that represents each user's user ID
-* `String `name` - string that represents the name associated with the owner of the `user` account  
+* `String` `name` - string that represents the name associated with the owner of the `user` account  
   
 Rep Invariant:  
 * `url` of one `User` cannot be the same as the `url` of another `User`  
@@ -86,7 +84,6 @@ Rep Invariant:
 ### `Review`
 Datatype that represents a review of a `Restaurant` on Yelp in the `YelpDB`  
 Has the following fields:  
-* `String` `type` - represents the type of datatype in the database
 * `String` `business_id` - string that represents the `Restaurant` the `Review` is associated to
 * `HashMap<String, Integer>` `votes` - represents the distribution of the user's votes on the review over each type of vote (`funny`, `useful`, `cool`)  
 * `String` `review_id` - string that represents each review's review ID  
