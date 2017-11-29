@@ -8,7 +8,7 @@ public class YelpDB implements MP5Db{
 	private ArrayList<Restaurant> Restaurants; //list of Restaurants that exist on Yelp
 	private ArrayList<Review> Reviews; //list of Reviews that exist on Yelp
 	private ArrayList<YelpUser> YelpUsers; //list of YelpUsers that exist on Yelp
-	
+	private ArrayList <Review> UserReviews;
 	public YelpDB(ArrayList<Restaurant> restaurants, ArrayList<Review> reviews, ArrayList<YelpUser> yelpUsers) {
 		this.Restaurants = restaurants;
 		this.Reviews = reviews;
@@ -26,6 +26,14 @@ public class YelpDB implements MP5Db{
 		
 	}
 	
+	public YelpDB(ArrayList<Restaurant> restaurants, ArrayList<Review> reviews, ArrayList<YelpUser> yelpUsers,
+			ArrayList<Review> userReviews) {
+		Restaurants = restaurants;
+		Reviews = reviews;
+		YelpUsers = yelpUsers;
+		UserReviews = userReviews;
+	}
+
 	/**
 	 * given a restaurant, return a List containing its best 
 	 * Review in the first entry of the List and its worst Review in the second entry

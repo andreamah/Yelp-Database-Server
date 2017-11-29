@@ -21,9 +21,10 @@ public class Review {
 	private int stars; //represents the rating out of 5 given to the Restaurant in the Review
 	private String user_id; //string that represents the YelpUser that wrote the Review
 	private String date; //string that represents when the Review was written
+	private Restaurant restaurant;
 	
 	public Review(String type, String business_id, HashMap<String, Integer> votes, String review_id, String text,
-			int stars, String user_id, String date) {
+			int stars, String user_id, String date, Restaurant restaurant) {
 		this.type = type;
 		this.business_id = business_id;
 		this.votes = votes;
@@ -32,6 +33,7 @@ public class Review {
 		this.stars = stars;
 		this.user_id = user_id;
 		this.date = date;
+		this.restaurant = restaurant;
 	}
 	
 	/**

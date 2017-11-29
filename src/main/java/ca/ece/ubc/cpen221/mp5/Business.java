@@ -18,13 +18,12 @@ public class Business {
 	protected String name; //collection of tags that the business is associated to
 	protected String[] categories; //state the business is located in
 	protected String state; //state the business is located in
-	protected String type; //represents the type of datatype in the database
 	protected String city; //the city the business is located in
 	protected String full_address; //the address of the business
 	
 	public Business(boolean open, String url, double latitude, double longitude, 
 			String[] neighborhoods,String business_id,String name, String[] categories,
-			String state, String type, String city, String full_address)
+			String state, String city, String full_address)
 	{
 		this.open=open;
 		this.url=url;
@@ -35,7 +34,6 @@ public class Business {
 		this.name=name;
 		this.categories=categories;
 		this.state=state;
-		this.type=type;
 		this.city=city;
 		this.full_address=full_address;
 	}
