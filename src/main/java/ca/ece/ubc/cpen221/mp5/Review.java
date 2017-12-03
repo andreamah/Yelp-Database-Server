@@ -25,11 +25,11 @@ public class Review {
 			double stars, String user_id, HashMap<String, Integer> date) {
 		this.business_id = business_id;
 		this.votes = votes;
-		this.setReview_id(review_id);
+		this.review_id=review_id;
 		this.text = text;
 		this.stars = stars;
 		this.user_id = user_id;
-		this.setDate(date);
+		this.date=date;
 	}
 	
 	/**
@@ -68,17 +68,12 @@ public class Review {
 		return review_id;
 	}
 
-	public void setReview_id(String review_id) {
-		this.review_id = review_id;
-	}
-
 	public HashMap<String, Integer> getDate() {
 		return date;
 	}
-
-	public void setDate(HashMap<String, Integer> date) {
-		this.date = date;
-	}
+	
+	
+	
 	
 	
 }

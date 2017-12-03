@@ -26,4 +26,12 @@ public class YelpUser extends User {
 		return average_stars;
 	}
 
+	public HashMap<String, Integer> getVotes() {
+		return votes;
+	}
+
+	public int getReview_count() {
+		return review_count;
+	}
+
 }

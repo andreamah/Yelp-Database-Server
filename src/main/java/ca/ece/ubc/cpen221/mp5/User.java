@@ -17,6 +17,14 @@ public class User {
 		this.name = name;
 	}
 	
+	public String getUrl() {
+		return url;
+	}
+
+	public String getName() {
+		return name;
+	}
+
 	public String getUser_id() {
 		return user_id;
 	}

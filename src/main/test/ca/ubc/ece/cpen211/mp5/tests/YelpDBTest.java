@@ -312,32 +312,52 @@ public class YelpDBTest<T> {
 	public void test9() throws IOException {
 		YelpDB<T> db = new YelpDB<T>("data/restaurants.json","data/users.json", "data/reviews.json");
 		
-		
 		ArrayList<Restaurant> Restaurants = db.getRestaurants();
 		
 		ArrayList<Review> Reviews = db.getReviews();
 		
-		//YelpDB<T> db = new YelpDB<T>(Restaurants, Reviews, null);
-		
 		ArrayList<Review> bestAndWorstReviews = db.bestAndWorst(Restaurants.get(0));
-		System.out.println("!!!"); 
-		System.out.println(bestAndWorstReviews );
-		; 
-		for (Review r:bestAndWorstReviews )
+		ArrayList<Review> bestAndWorstReviewsExpected = new ArrayList<Review>();
+		bestAndWorstReviewsExpected.add(null);
+		bestAndWorstReviewsExpected.add(null);
+		
+		for (Review r : Reviews)
 		{
-			System.out.print(r.getText());
+			if (r.getReview_id().equals("WpA9Ol8unjUDYtiTg_bevQ"))
+			{
+				bestAndWorstReviewsExpected.set(0,r);
+			}
+			else if (r.getReview_id().equals("53glrLS3YJGEucPd1XdH1Q"))
+			{
+				bestAndWorstReviewsExpected.set(1,r);
+			}
 		}
-		/*
-		assertTrue(bestAndWorstReviews.size() == 2);
 		
-		assertEquals(bestAndWorstReviews.get(0), v1);
-		assertEquals(bestAndWorstReviews.get(1), v2);
+		assertEquals(bestAndWorstReviewsExpected,bestAndWorstReviews);
 		
-		assertFalse(bestAndWorstReviews.contains(v3));
-		assertFalse(bestAndWorstReviews.contains(v4));
-		assertFalse(bestAndWorstReviews.contains(v5));
-		assertFalse(bestAndWorstReviews.contains(v6));
-		*/
+	}
+	
+	@Test
+	public void test10() throws IOException {
+		YelpDB<T> db = new YelpDB<T>("data/restaurants.json","data/users.json", "data/reviews.json");
+		
+		ArrayList<Restaurant> Restaurants = db.getRestaurants();
+		Restaurants.get(0).setOpen(false);
+		
+		assertFalse(Restaurants.get(0).isOpen());
+		
+		
+		ArrayList<Review> Reviews = db.getReviews();
+		HashMap<String,Integer> votes = new HashMap<String,Integer>();
+		votes.put("cool", 159);
+		votes.put("useful", 351);
+		votes.put("funny", 149);
+		
+		Reviews.get(0).UpdateVotes(votes);
+		
+		assertEquals(Reviews.get(0).getVotes(),votes);
+		
+		
 	}
 	
 

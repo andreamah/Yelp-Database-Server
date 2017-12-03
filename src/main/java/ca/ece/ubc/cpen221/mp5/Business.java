@@ -73,5 +73,27 @@ public class Business {
 	public String getName() {
 		return name;
 	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public String[] getNeighborhoods() {
+		return neighborhoods;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public String getFull_address() {
+		return full_address;
+	}
+	
+	
 	
 }
