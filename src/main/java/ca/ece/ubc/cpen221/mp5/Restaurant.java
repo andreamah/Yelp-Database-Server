@@ -1,7 +1,5 @@
 package ca.ece.ubc.cpen221.mp5;
 
-import java.io.IOException;
-
 public class Restaurant extends Business{
 
 	private double stars; //represents the rating of the Restaurant's overall quality
@@ -16,8 +14,8 @@ public class Restaurant extends Business{
 		super(open, url, latitude, longitude, neighborhoods, business_id, name, categories, state, city, full_address);
 		this.stars = stars;
 		this.review_count = review_count;
-		this.photo_url =photo_url;
-		this.schools = schools;
+		this.setPhoto_url(photo_url);
+		this.setSchools(schools);
 		this.price = price;
 	}
 	/**
@@ -32,6 +30,28 @@ public class Restaurant extends Business{
 	}
 	public int getPrice() {
 		return price;
+	}
+	
+	/**
+	 * Returns the distance between this restaurant and the point (x,y)
+	 * @param y coordinate of point to measure distance from
+	 * @param x coordinate of point to measure distance from
+	 * @return distance between this restaurant and (x,y)
+	 */
+	public double getDistance(double y, double x) {
+		return Math.sqrt(Math.pow(y - latitude, 2.0) + Math.pow(x - longitude, 2.0));
+	}
+	public String[] getSchools() {
+		return schools;
+	}
+	public void setSchools(String[] schools) {
+		this.schools = schools;
+	}
+	public String getPhoto_url() {
+		return photo_url;
+	}
+	public void setPhoto_url(String photo_url) {
+		this.photo_url = photo_url;
 	}
 	
 	

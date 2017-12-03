@@ -14,6 +14,7 @@ import org.junit.Test;
 import ca.ece.ubc.cpen221.mp5.Restaurant;
 import ca.ece.ubc.cpen221.mp5.RestaurantParser;
 import ca.ece.ubc.cpen221.mp5.Review;
+import ca.ece.ubc.cpen221.mp5.ReviewParser;
 import ca.ece.ubc.cpen221.mp5.YelpUser;
 import ca.ece.ubc.cpen221.mp5.YelpUserParser;
 

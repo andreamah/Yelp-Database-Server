@@ -49,7 +49,7 @@ public class RestaurantParser extends Parser  {
 		//if the there exists a line, do the following
 		while (result != null) {
 			//create a JsonReader for the line and make a JsonObject out of it
-	        JsonReader reader = Json.createReader(new StringReader(result));\
+	        JsonReader reader = Json.createReader(new StringReader(result));
 	        JsonObject currentLine = reader.readObject();
 	        reader.close();
 			
