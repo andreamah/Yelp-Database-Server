@@ -45,7 +45,7 @@ public class Business {
 	public boolean isOpen() {
 		return open;
 	}
-	
+
 	/**
 	 * changes the open field of the business to status
 	 * @param open
@@ -53,4 +53,25 @@ public class Business {
 	public void setOpen(boolean open) {
 		this.open = open;
 	}
+	
+	public String[] getCategories() {
+		return categories;
+	}
+
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public String getBusiness_id() {
+		return business_id;
+	}
+
+	public String getName() {
+		return name;
+	}
+	
 }

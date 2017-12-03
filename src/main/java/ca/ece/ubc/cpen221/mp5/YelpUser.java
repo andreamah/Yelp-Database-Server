@@ -13,12 +13,17 @@ public class YelpUser extends User {
 	private int review_count; //the number of Yelp reviews this YelpUser has written
 	private double average_stars; //average stars this YelpUser has given in their reviews
 	
-	public YelpUser(String url, String type, String user_id, String name, HashMap<String, Integer> votes,
+	public YelpUser(String url, String user_id, String name, HashMap<String, Integer> votes,
 			int review_count, double average_stars) 
 	{
-		super(url, type, user_id, name);
+		super(url, user_id, name);
 		this.votes = votes;
 		this.review_count = review_count;
 		this.average_stars = average_stars;
 	}
+
+	public double getAverage_stars() {
+		return average_stars;
+	}
+
 }

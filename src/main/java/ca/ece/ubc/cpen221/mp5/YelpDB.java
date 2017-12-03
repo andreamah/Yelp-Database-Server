@@ -1,5 +1,6 @@
 package ca.ece.ubc.cpen221.mp5;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.function.ToDoubleBiFunction;
@@ -8,11 +9,17 @@ public class YelpDB implements MP5Db{
 	private ArrayList<Restaurant> Restaurants; //list of Restaurants that exist on Yelp
 	private ArrayList<Review> Reviews; //list of Reviews that exist on Yelp
 	private ArrayList<YelpUser> YelpUsers; //list of YelpUsers that exist on Yelp
-	private ArrayList <Review> UserReviews;
+	
 	public YelpDB(ArrayList<Restaurant> restaurants, ArrayList<Review> reviews, ArrayList<YelpUser> yelpUsers) {
 		this.Restaurants = restaurants;
 		this.Reviews = reviews;
 		this.YelpUsers = yelpUsers;
+	}
+	
+	public YelpDB(String restaurantsFileName, String usersFileName, String reviewsFileName) throws IOException {
+		this.Restaurants = RestaurantParser.Parse(restaurantsFileName);
+		this.YelpUsers = YelpUserParser.Parse(usersFileName);
+		this.Reviews = ReviewParser.Parse(reviewsFileName);
 	}
 	
 	/**
@@ -23,16 +30,9 @@ public class YelpDB implements MP5Db{
 	ArrayList<Review> usersReviews(YelpUser reviewer)
 	{
 		return Reviews;
-		
 	}
 	
-	public YelpDB(ArrayList<Restaurant> restaurants, ArrayList<Review> reviews, ArrayList<YelpUser> yelpUsers,
-			ArrayList<Review> userReviews) {
-		Restaurants = restaurants;
-		Reviews = reviews;
-		YelpUsers = yelpUsers;
-		UserReviews = userReviews;
-	}
+
 
 	/**
 	 * given a restaurant, return a List containing its best 

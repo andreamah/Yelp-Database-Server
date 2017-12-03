@@ -13,19 +13,16 @@ import java.util.HashMap;
  *
  */
 public class Review {
-	private String type; //represents the type of datatype in the database
 	private String business_id; //string that represents the Restaurant the Review is associated to
 	private HashMap<String, Integer> votes; //represents the distribution of the user's votes on the review over each type of vote (funny, useful, cool)
 	private String review_id; //string that represents each review's review ID
 	private String text; //string representing the comments by a YelpUser about the Restaurant
-	private int stars; //represents the rating out of 5 given to the Restaurant in the Review
+	private double stars; //represents the rating out of 5 given to the Restaurant in the Review
 	private String user_id; //string that represents the YelpUser that wrote the Review
-	private String date; //string that represents when the Review was written
-	private Restaurant restaurant;
+	private HashMap<String, Integer> date; //string that represents when the Review was written
 	
-	public Review(String type, String business_id, HashMap<String, Integer> votes, String review_id, String text,
-			int stars, String user_id, String date, Restaurant restaurant) {
-		this.type = type;
+	public Review(String business_id, HashMap<String, Integer> votes, String review_id, String text,
+			double stars, String user_id, HashMap<String, Integer> date) {
 		this.business_id = business_id;
 		this.votes = votes;
 		this.review_id = review_id;
@@ -33,7 +30,6 @@ public class Review {
 		this.stars = stars;
 		this.user_id = user_id;
 		this.date = date;
-		this.restaurant = restaurant;
 	}
 	
 	/**
@@ -44,6 +40,10 @@ public class Review {
 		return votes;
 	}
 	
+	public String getText() {
+		return text;
+	}
+
 	/**
 	 * increments the number of votes of a particular type of vote in votes by 1
 	 * @param votes
@@ -51,4 +51,18 @@ public class Review {
 	public void UpdateVotes(HashMap<String, Integer> votes) {
 		this.votes = votes;
 	}
+
+	public String getBusiness_id() {
+		return business_id;
+	}
+
+	public double getStars() {
+		return stars;
+	}
+
+	public String getUser_id() {
+		return user_id;
+	}
+	
+	
 }
