@@ -1,4 +1,4 @@
-package ca.ece.ubc.cpen221.mp5;
+package ca.ubc.ece.cpen211.mp5.tests;
 
 import static org.junit.Assert.*;
 
@@ -10,6 +10,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 import org.junit.Test;
+
+import ca.ece.ubc.cpen221.mp5.Restaurant;
+import ca.ece.ubc.cpen221.mp5.RestaurantParser;
+import ca.ece.ubc.cpen221.mp5.Review;
+import ca.ece.ubc.cpen221.mp5.YelpUser;
+import ca.ece.ubc.cpen221.mp5.YelpUserParser;
 
 public class ParserTest {
 
