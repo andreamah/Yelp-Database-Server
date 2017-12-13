@@ -59,6 +59,14 @@ public class YelpDBServer {
 	private void GETRESTAURANT(String business_id) {
 	}
 	
+	private void ADDUSER(String user_information) {
+	}
+	
+	private void ADDRESTAURANT(String restaurant_information) {
+	}
+	
+	private void ADDREVIEW(String review_information) {
+	}
 	
 	
 	
