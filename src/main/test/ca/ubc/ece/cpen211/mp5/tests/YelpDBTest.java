@@ -21,7 +21,7 @@ import ca.ece.ubc.cpen221.mp5.Review;
 import ca.ece.ubc.cpen221.mp5.YelpDB;
 import ca.ece.ubc.cpen221.mp5.YelpUser;
 
-public class YelpDBTest<T> {
+public class YelpDBTest {
 
 	
 	@Test
@@ -54,7 +54,7 @@ public class YelpDBTest<T> {
 		Restaurants.add(r7); Restaurants.add(r8); Restaurants.add(r9);
 		Restaurants.add(r10);
 		
-		YelpDB<T> ydb = new YelpDB<T>(Restaurants, null, null);
+		YelpDB ydb = new YelpDB(Restaurants, null, null);
 		
 		int k = 5;
 		
@@ -110,7 +110,7 @@ public class YelpDBTest<T> {
 		ArrayList<Restaurant> Restaurants = new ArrayList<Restaurant>();
 		Restaurants.add(ra); Restaurants.add(rb); Restaurants.add(rc);
 		
-		YelpDB<T> db = new YelpDB<T>(Restaurants, null, null);
+		YelpDB db = new YelpDB(Restaurants, null, null);
 		
 		String jsonString = db.kMeansClusters_json(3);
 		String expectedString = "[{\"x\":2.0,\"y\":1.0,\"name\":\"ra\",\"cluster\":1,"
@@ -133,9 +133,9 @@ public class YelpDBTest<T> {
 		ArrayList<Restaurant> Restaurants = new ArrayList<Restaurant>();
 		Restaurants.add(r1); Restaurants.add(r2); Restaurants.add(r3);
 		
-		YelpDB<T> db = new YelpDB<T>(Restaurants, null, null);
+		YelpDB db = new YelpDB(Restaurants, null, null);
 		
-		PredictorFunction<T> pfunc = new PredictorFunction<T>(0.5, 0.7, 100);
+		PredictorFunction pfunc = new PredictorFunction(0.5, 0.7, 100);
 		
 		assertEquals(pfunc.applyAsDouble(db, "r1"), 1.0, 0.0);
 		assertEquals(pfunc.applyAsDouble(db, "r2"), 3.0, 0.0);
@@ -177,9 +177,10 @@ public class YelpDBTest<T> {
 		ArrayList<YelpUser> YelpUsers = new ArrayList<YelpUser>();
 		YelpUsers.add(u1); YelpUsers.add(u2);
 		
-		YelpDB<T> db = new YelpDB<T>(Restaurants, Reviews, YelpUsers);
+		YelpDB db = new YelpDB(Restaurants, Reviews, YelpUsers);
 		
-		ToDoubleBiFunction<MP5Db<T>, String> pfunc = db.getPredictorFunction("u1");
+		ToDoubleBiFunction<MP5Db<Restaurant>, String> pfunc = 
+				db.getPredictorFunction("u1");
 		
 		assertEquals(pfunc.applyAsDouble(db, "r1"), 1.0, 0.0);
 		assertEquals(pfunc.applyAsDouble(db, "r2"), 2.0, 0.0);
@@ -209,7 +210,7 @@ public class YelpDBTest<T> {
 		Reviews.add(v1); Reviews.add(v2); Reviews.add(v3);
 		Reviews.add(v4); Reviews.add(v5); Reviews.add(v6);
 		
-		YelpDB<T> db = new YelpDB<T>(Restaurants, Reviews, null);
+		YelpDB db = new YelpDB(Restaurants, Reviews, null);
 		
 		ArrayList<Review> bestAndWorstReviews = db.bestAndWorst(r1);
 		
@@ -241,7 +242,7 @@ public class YelpDBTest<T> {
 		Restaurants.add(centre);
 		Restaurants.add(r1); Restaurants.add(r2); Restaurants.add(r3); Restaurants.add(r4);
 		
-		YelpDB<T> db = new YelpDB<T>(Restaurants, null, null);
+		YelpDB db = new YelpDB(Restaurants, null, null);
 		
 		ArrayList<Restaurant> closeRestaurants = db.closeRestaurants(0, 0, 5);
 		
@@ -266,7 +267,7 @@ public class YelpDBTest<T> {
 		ArrayList<Restaurant> Restaurants = new ArrayList<Restaurant>();
 		Restaurants.add(r1); Restaurants.add(r2); Restaurants.add(r3); Restaurants.add(r4);
 		
-		YelpDB<T> db = new YelpDB<T>(Restaurants, null, null);
+		YelpDB db = new YelpDB(Restaurants, null, null);
 		
 		ArrayList<Restaurant> top3 = db.threeBest();
 		
@@ -297,7 +298,7 @@ public class YelpDBTest<T> {
 		ArrayList<Restaurant> Restaurants = new ArrayList<Restaurant>();
 		Restaurants.add(r1); Restaurants.add(r2); Restaurants.add(r3); Restaurants.add(r4);
 		
-		YelpDB<T> db = new YelpDB<T>(Restaurants, null, null);
+		YelpDB db = new YelpDB(Restaurants, null, null);
 		
 		ArrayList<Restaurant> RelatedRestaurants = db.relatedRestaurants(r1);
 		
@@ -311,7 +312,7 @@ public class YelpDBTest<T> {
 	
 	@Test
 	public void test9() throws IOException {
-		YelpDB<T> db = new YelpDB<T>("data/restaurants.json","data/users.json", "data/reviews.json");
+		YelpDB db = new YelpDB("data/restaurants.json","data/users.json", "data/reviews.json");
 		
 		ArrayList<Restaurant> Restaurants = db.getRestaurants();
 		
@@ -340,7 +341,7 @@ public class YelpDBTest<T> {
 	
 	@Test
 	public void test10() throws IOException {
-		YelpDB<T> db = new YelpDB<T>("data/restaurants.json","data/users.json", "data/reviews.json");
+		YelpDB db = new YelpDB("data/restaurants.json","data/users.json", "data/reviews.json");
 		
 		ArrayList<Restaurant> Restaurants = db.getRestaurants();
 		Restaurants.get(0).setOpen(false);

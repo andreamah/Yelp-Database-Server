@@ -15,7 +15,7 @@ import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 
-public class YelpDB<T> implements MP5Db<T> {
+public class YelpDB implements MP5Db<Restaurant> {
 	private ArrayList<Restaurant> Restaurants; //list of Restaurants that exist on Yelp
 	private ArrayList<Review> Reviews; //list of Reviews that exist on Yelp
 	private ArrayList<YelpUser> YelpUsers; //list of YelpUsers that exist on Yelp
@@ -33,17 +33,29 @@ public class YelpDB<T> implements MP5Db<T> {
 	}
 	
 	public ArrayList<Restaurant> getRestaurants() {
-		return Restaurants;
+		return new ArrayList<Restaurant>(Restaurants);
 	}
 	
 	public ArrayList<Review> getReviews() {
-		return Reviews;
+		return new ArrayList<Review>(Reviews);
 	}
 	
 	public ArrayList<YelpUser> getYelpUsers() {
-		return YelpUsers;
+		return new ArrayList<YelpUser>(YelpUsers);
 	}
 	
+	public void setRestaurants(ArrayList<Restaurant> restaurants) {
+		Restaurants = restaurants;
+	}
+
+	public void setReviews(ArrayList<Review> reviews) {
+		Reviews = reviews;
+	}
+
+	public void setYelpUsers(ArrayList<YelpUser> yelpUsers) {
+		YelpUsers = yelpUsers;
+	}
+
 	/**
 	 * Given a YelpUser, return a list of all Reviews in the database
 	 * submitted by that YelpUser
@@ -225,7 +237,7 @@ public class YelpDB<T> implements MP5Db<T> {
 	}
 	
 	@Override
-	public Set getMatches(String queryString) {
+	public Set<Restaurant> getMatches(String queryString) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -417,7 +429,7 @@ public class YelpDB<T> implements MP5Db<T> {
 	 * 			and returns the predicted rating of the user for whom this function
 	 * 			was constructed for
 	 */
-	public ToDoubleBiFunction<MP5Db<T>, String> getPredictorFunction(String user) {
+	public ToDoubleBiFunction<MP5Db<Restaurant>, String> getPredictorFunction(String user) {
 
 		// find the YelpUser in the database associated with the user ID
 		YelpUser yelpuser = YelpUsers.stream()
@@ -466,8 +478,8 @@ public class YelpDB<T> implements MP5Db<T> {
 		double r_squared = (Math.pow(Sxy, 2.0)) / (Sxx * Syy);
 		
 		// create a predictor function with the regression coefficients calculated
-		ToDoubleBiFunction<MP5Db<T>, String> predictRating = 
-				new PredictorFunction<T>(a, b, r_squared);
+		ToDoubleBiFunction<MP5Db<Restaurant>, String> predictRating = 
+				new PredictorFunction(a, b, r_squared);
 		
 		//return the predictor function
 		return predictRating;

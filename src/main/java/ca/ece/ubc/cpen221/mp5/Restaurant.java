@@ -32,6 +32,10 @@ public class Restaurant extends Business{
 		return price;
 	}
 	
+	public void increaseReview_count() {
+		review_count++;
+	}
+	
 	/**
 	 * Returns the distance between this restaurant and the point (x,y)
 	 * @param y coordinate of point to measure distance from

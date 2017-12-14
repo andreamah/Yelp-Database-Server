@@ -27,11 +27,15 @@ public class YelpUser extends User {
 	}
 
 	public HashMap<String, Integer> getVotes() {
-		return votes;
+		return new HashMap<String, Integer>(votes);
 	}
 
 	public int getReview_count() {
 		return review_count;
+	}
+	
+	public void increaseReview_count() {
+		review_count++;
 	}
 
 }

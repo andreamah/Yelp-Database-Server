@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.function.ToDoubleBiFunction;
 import java.util.stream.Collectors;
 
-public class PredictorFunction<T> implements ToDoubleBiFunction<MP5Db<T>, String> {
+public class PredictorFunction implements ToDoubleBiFunction<MP5Db<Restaurant>, String> {
 	// abstraction function: linear function that takes the form
 	//			y =a + bx
 	// with r_squared being a measure of the accuracy of the function's
@@ -21,8 +21,8 @@ public class PredictorFunction<T> implements ToDoubleBiFunction<MP5Db<T>, String
 	}
 
 
-	public double applyAsDouble(MP5Db<T> t, String u) {
-		ArrayList<Restaurant> Restaurants = ((YelpDB<T>) t).getRestaurants();
+	public double applyAsDouble(MP5Db<Restaurant> t, String u) {
+		ArrayList<Restaurant> Restaurants = ((YelpDB) t).getRestaurants();
 		
 		// get the price of the restaurant
 		double price = Restaurants.stream()
