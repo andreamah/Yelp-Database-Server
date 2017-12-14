@@ -55,8 +55,25 @@ public class Business {
 	}
 	
 	public String[] getCategories() {
-		return categories;
+		//ensure defensive copying
+		String[] newstr = new String[categories.length];
+		for (int i = 0; i < categories.length; i++)
+		{
+			newstr[i] = categories[i];
+		}
+		
+		return newstr;
 	}
+
+	public void setCategories(String[] mcategories) {
+		String[] newstr = new String[mcategories.length];
+		for (int i = 0; i < mcategories.length; i++)
+		{
+			newstr[i] = mcategories[i];
+		}
+		this.categories = newstr;
+	}
+	
 
 	public double getLatitude() {
 		return latitude;
@@ -78,9 +95,6 @@ public class Business {
 		return url;
 	}
 
-	public String[] getNeighborhoods() {
-		return neighborhoods;
-	}
 
 	public String getState() {
 		return state;
@@ -94,6 +108,24 @@ public class Business {
 		return full_address;
 	}
 	
-	
+	public String[] getNeighborhoods() {
+		//defensive copying
+		String[] newstr = new String[neighborhoods.length];
+		for (int i = 0; i < neighborhoods.length; i++)
+		{
+			newstr[i] = neighborhoods[i];
+		}
+		return newstr;
+	}
+
+	public void setNeighborhoods(String[] mneighborhoods) {
+		
+		String[] newstr = new String[mneighborhoods.length];
+		for (int i = 0; i < mneighborhoods.length; i++)
+		{
+			newstr[i] = mneighborhoods[i];
+		}
+		this.neighborhoods = newstr;
+	}
 	
 }

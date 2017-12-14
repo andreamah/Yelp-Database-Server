@@ -45,12 +45,27 @@ public class Restaurant extends Business{
 	public double getDistance(double y, double x) {
 		return Math.sqrt(Math.pow(y - latitude, 2.0) + Math.pow(x - longitude, 2.0));
 	}
+	
 	public String[] getSchools() {
-		return schools;
+		//ensure defensive copying
+		String[] newstr = new String[schools.length];
+		for (int i = 0; i < schools.length; i++)
+		{
+			newstr[i] = schools[i];
+		}
+		
+		return newstr;
 	}
-	public void setSchools(String[] schools) {
-		this.schools = schools;
+	
+	public void setSchools(String[] mschools) {
+		String[] newstr = new String[mschools.length];
+		for (int i = 0; i < mschools.length; i++)
+		{
+			newstr[i] = mschools[i];
+		}
+		this.schools = newstr;
 	}
+	
 	public String getPhoto_url() {
 		return photo_url;
 	}
@@ -58,5 +73,24 @@ public class Restaurant extends Business{
 		this.photo_url = photo_url;
 	}
 	
+	public String[] getCategories() {
+		//ensure defensive copying
+		String[] newstr = new String[categories.length];
+		for (int i = 0; i < categories.length; i++)
+		{
+			newstr[i] = categories[i];
+		}
+		
+		return newstr;
+	}
+
+	public void setCategories(String[] mcategories) {
+		String[] newstr = new String[mcategories.length];
+		for (int i = 0; i < mcategories.length; i++)
+		{
+			newstr[i] = mcategories[i];
+		}
+		this.categories = newstr;
+	}
 	
 }

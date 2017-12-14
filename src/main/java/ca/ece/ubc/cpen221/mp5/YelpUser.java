@@ -26,8 +26,8 @@ public class YelpUser extends User {
 		return average_stars;
 	}
 
-	public HashMap<String, Integer> getVotes() {
-		return new HashMap<String, Integer>(votes);
+	public void setVotes(HashMap<String, Integer> votes) {
+		this.votes = votes;
 	}
 
 	public int getReview_count() {
@@ -36,6 +36,10 @@ public class YelpUser extends User {
 	
 	public void increaseReview_count() {
 		review_count++;
+	}
+	
+	public HashMap<String, Integer> getVotes() {
+		return new HashMap<String, Integer>(votes);
 	}
 
 }
