@@ -22,6 +22,7 @@ import ca.ece.ubc.cpen221.mp5.YelpDB;
 import ca.ece.ubc.cpen221.mp5.YelpUser;
 
 public class YelpDBTest<T> {
+
 	
 	@Test
 	public void test1() {
