@@ -21,7 +21,7 @@ import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.json.JsonReader;
 
-public class YelpDBServer<T> {
+public class YelpDBServer {
 
 	public static final int YELPDB_PORT = 4949;
 	public static final int REQUEST_HANDLE = 0;
@@ -33,9 +33,10 @@ public class YelpDBServer<T> {
 	public static Integer nextReviewId = 1;
 	public static Integer nextUserId = 1;
 	
-	public YelpDBServer(int port, YelpDB yelpDB) throws IOException {
+	public YelpDBServer(int port) throws IOException {
 		this.serverSocket = new ServerSocket(port);
-		this.yelpDB = yelpDB;
+		this.yelpDB = new YelpDB("data/restaurants.json","data/users.json", 
+				"data/reviews.json");
 	}
 	
 	/**
@@ -62,16 +63,19 @@ public class YelpDBServer<T> {
 	public void serve() throws IOException {
 		while (true) {
 			final Socket socket = serverSocket.accept();
+			System.out.println("socket accepted");
 			
 			Thread handler = new Thread(new Runnable() {
 				public void run() {
 					try {
 						try {
+							System.out.println("trying to handle");
 							handle(socket);
 						} finally {
 							socket.close();
 						}
 					} catch (IOException ioe) {
+						System.out.println("didnt handle");
 						ioe.printStackTrace();
 					}
 				}
@@ -243,9 +247,13 @@ public class YelpDBServer<T> {
 	}
 	
 	public static void main(String[] args) {
-		
-		
-		
+		try {
+			YelpDBServer server = new YelpDBServer(YELPDB_PORT);
+			System.out.println("running");
+			server.serve();
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }
