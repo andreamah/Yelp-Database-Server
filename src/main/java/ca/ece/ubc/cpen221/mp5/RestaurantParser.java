@@ -11,7 +11,7 @@ import javax.json.JsonObject;
 import javax.json.JsonReader;
 
 
-public class RestaurantParser extends Parser  {
+public class RestaurantParser extends JsonParser  {
 	
 	/**
 	 * Parses a JSON file to return a list of restaurants objects with the tags as the fields

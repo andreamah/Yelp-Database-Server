@@ -28,5 +28,11 @@ public class User {
 	public String getUser_id() {
 		return user_id;
 	}
+	
+	@Override 
+	public String toString()
+	{
+		return new String(name);
+	}
 
 }

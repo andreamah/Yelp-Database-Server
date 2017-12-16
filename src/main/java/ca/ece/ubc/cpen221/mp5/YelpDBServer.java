@@ -1,5 +1,4 @@
 package ca.ece.ubc.cpen221.mp5;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,6 +10,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.json.Json;
@@ -20,6 +20,19 @@ import javax.json.JsonException;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.json.JsonReader;
+
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.TokenStream;
+import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
+
+import ca.ece.ubc.cpen221.mp5.ANTLR.mp5AntlrLex;
+import ca.ece.ubc.cpen221.mp5.ANTLR.mp5AntlrListenerCollect;
+import ca.ece.ubc.cpen221.mp5.ANTLR.mp5AntlrParse;
+import ca.ece.ubc.cpen221.mp5.ANTLR.mp5AntlrParseListener;
+
 
 public class YelpDBServer {
 
@@ -120,7 +133,9 @@ public class YelpDBServer {
 				else if(request[REQUEST_HANDLE].equals("ADDREVIEW")) {
 					message = ADDREVIEW(request[REQUEST_INFO]);
 				}
-				
+				else if(request[REQUEST_HANDLE].equals("QUERY")) {
+					message = QUERY(request[REQUEST_INFO]);
+				}
 				// if the request handle is not recognized, identify it as
 				// an illegal request
 				else {
@@ -140,6 +155,50 @@ public class YelpDBServer {
 		}
 	}
 	
+	private String QUERY(String query_id) {
+		Set<Restaurant> filtered;
+		try {
+			filtered = yelpDB.getMatches(query_id);
+		} catch (Exception e) {
+			return "ERR: INVALID_QUERY";
+		}
+		
+		if (filtered.isEmpty()) {
+			return "ERR: NO_MATCH";
+		}
+		
+		JsonArrayBuilder builder = Json.createArrayBuilder();
+		
+		for (Restaurant rest : filtered)
+		{
+			builder.add(Json.createObjectBuilder()
+			    	.add("open", rest.isOpen())
+			        .add("url", rest.getUrl())
+					.add("longitude", BigDecimal.valueOf(rest.getLongitude()))
+					.add("neighborhoods", arrayToJson(rest.getNeighborhoods()))
+					
+					
+					.add("business_id",rest.getBusiness_id())
+					.add("name", rest.getName())
+					.add("categories", arrayToJson(rest.getCategories()))
+					.add("state", rest.getState())
+					.add("type", "business")
+					.add("stars", rest.getStars())
+					.add("city", rest.getCity())
+					
+					.add("full_address", rest.getFull_address())
+					.add("review_count", rest.getReview_count())
+
+					.add("photo_url", rest.getPhoto_url())
+					.add("schools",  arrayToJson(rest.getSchools()))
+					
+					.add("latitude", BigDecimal.valueOf(rest.getLatitude()))
+					.add("price", rest.getPrice()));
+		}
+		String jsonString = builder.build().toString();
+		return jsonString;
+	}
+
 	private String GETRESTAURANT(String business_id) {
 		//find restaurant based on restaurant id
 		
@@ -156,35 +215,10 @@ public class YelpDBServer {
 		{
 			Restaurant result = validRestaurants.get(0);
 			
-			JsonArray value = Json.createArrayBuilder()
-				     .add(Json.createObjectBuilder()
-				    	.add("open", result.isOpen())
-				        .add("url", result.getUrl())
-						.add("longitude", BigDecimal.valueOf(result.getLongitude()))
-						.add("neighborhoods", arrayToJson(result.getNeighborhoods()))
-						
-						
-						.add("business_id",result.getBusiness_id())
-						.add("name", result.getName())
-						.add("categories", arrayToJson(result.getCategories()))
-						.add("state", result.getState())
-						.add("type", "business")
-						.add("stars", result.getStars())
-						.add("city", result.getCity())
-						
-						.add("full_address", result.getFull_address())
-						.add("review_count", result.getReview_count())
-
-						.add("photo_url", result.getPhoto_url())
-						.add("schools",  arrayToJson(result.getSchools()))
-						
-						.add("latitude", BigDecimal.valueOf(result.getLatitude()))
-						.add("price", result.getPrice()))
-						.build();
-			String info = value.toString();
+			String info = printRestaurant(result);
 			
 			return info;
-		} else if (validRestaurants.size() == 0)
+		} else if (validRestaurants.isEmpty())
 		{
 			return "ERR: ILLEGAL_REQUEST";
 		}
@@ -197,6 +231,37 @@ public class YelpDBServer {
 			} 
 		}
 				
+	}
+	
+	
+	
+	public String printRestaurant(Restaurant rest) {
+		JsonObject value = Json.createObjectBuilder()
+			    	.add("open", rest.isOpen())
+			        .add("url", rest.getUrl())
+					.add("longitude", BigDecimal.valueOf(rest.getLongitude()))
+					.add("neighborhoods", arrayToJson(rest.getNeighborhoods()))
+					
+					
+					.add("business_id",rest.getBusiness_id())
+					.add("name", rest.getName())
+					.add("categories", arrayToJson(rest.getCategories()))
+					.add("state", rest.getState())
+					.add("type", "business")
+					.add("stars", rest.getStars())
+					.add("city", rest.getCity())
+					
+					.add("full_address", rest.getFull_address())
+					.add("review_count", rest.getReview_count())
+
+					.add("photo_url", rest.getPhoto_url())
+					.add("schools",  arrayToJson(rest.getSchools()))
+					
+					.add("latitude", BigDecimal.valueOf(rest.getLatitude()))
+					.add("price", rest.getPrice())
+					.build();
+		String jsonString = value.toString();
+		return jsonString;
 	}
 	
 	private String ADDUSER(String user_information) {
@@ -214,9 +279,8 @@ public class YelpDBServer {
 		//"type": "user", "user_id": "418rK1b_PkXJTWhSRKxjew", "name": "Kelley L.", "average_stars": 3.73544973544974}
 		
 		String user_id = Integer.toString(nextUserId);
-		nextUserId++;
-		
 		String url =  "http://www.yelp.com/user_details?userid=" + nextUserId;
+		nextUserId++;
 		
 		HashMap<String, Integer> votes = new HashMap<String, Integer>();
 		votes.put("funny", 0);
@@ -227,6 +291,11 @@ public class YelpDBServer {
 		double average_stars = 0;
 		
 		YelpUser user = new YelpUser(url, user_id, name, votes,review_count, average_stars);
+		
+		
+		ArrayList<YelpUser> newYelpUsers =  yelpDB.getYelpUsers();
+		newYelpUsers.add(user);
+		yelpDB.setYelpUsers(newYelpUsers);
 		
 		JsonArray value = Json.createArrayBuilder()
 			     .add(Json.createObjectBuilder()
@@ -266,15 +335,15 @@ public class YelpDBServer {
 			open = jsonLine.getBoolean("open");
 		    longitude = jsonLine.getJsonNumber("longitude").doubleValue();
 	
-		    neighborhoods = Parser.toArrayString("neighborhoods", jsonLine);
+		    neighborhoods = JsonParser.toArrayString("neighborhoods", jsonLine);
 		    
-		    categories = Parser.toArrayString("categories", jsonLine);
+		    categories = JsonParser.toArrayString("categories", jsonLine);
 		    state =jsonLine.getString("state");
 		    
 		    city =jsonLine.getString("city");
 		    full_address =jsonLine.getString("full_address");
 		    photo_url =jsonLine.getString("photo_url");
-		    schools =Parser.toArrayString("schools", jsonLine);
+		    schools =JsonParser.toArrayString("schools", jsonLine);
 		    latitude =jsonLine.getJsonNumber("latitude").doubleValue();
 		    price = jsonLine.getInt("price");
 		    
@@ -285,14 +354,12 @@ public class YelpDBServer {
 		    }
 		}
 		catch (Exception e) {
-			return "ERR: INVALID_USER_STRING";
+			return "ERR: INVALID_RESTAURANT_STRING";
 		}
 		
 		String business_id = Integer.toString(nextBusinessId);
-		nextBusinessId++;
-		
 		String url =  "http://www.yelp.com/biz/" + nextBusinessId + "-" + name;
-		
+		nextBusinessId++;
 		double stars = 0;
 		
 		HashMap<String, Integer> votes = new HashMap<String, Integer>();
@@ -305,6 +372,10 @@ public class YelpDBServer {
 		Restaurant restaurant = new Restaurant(open, url, latitude, longitude, neighborhoods,
 				business_id, name, categories, state, city,
 				full_address, stars, review_count,photo_url,schools, price );
+		
+		ArrayList<Restaurant> newRestaurants =  yelpDB.getRestaurants();
+		newRestaurants.add(restaurant);
+		yelpDB.setRestaurants(newRestaurants);
 		
 		//{"open": true, "url": "http://www.yelp.com/biz/cafe-3-berkeley", "longitude": -122.260408, "neighborhoods": ["Telegraph Ave", "UC Campus Area"], 
 		//"business_id": "gclB3ED6uk6viWlolSb_uA", "name": "Cafe 3", 
@@ -343,7 +414,83 @@ public class YelpDBServer {
 	}
 	
 	private String ADDREVIEW(String review_information) {
-		return review_information;
+		try {
+			JsonReader reader = Json.createReader(new StringReader(review_information));
+			JsonObject object = reader.readObject();
+			reader.close();
+			
+			try {
+				String business_id = object.getString("business_id");
+				
+				ArrayList<Restaurant> Restaurants = yelpDB.getRestaurants();
+				ArrayList<Restaurant> restChecker =(ArrayList<Restaurant>) 
+						Restaurants.stream()
+				.filter(r -> r.getBusiness_id().equals(business_id))
+				.collect(Collectors.toList());
+				
+				if(restChecker.isEmpty()) {
+					return "ERR: NO_SUCH_RESTAURANT";
+				}
+				
+				HashMap<String, Integer> votes = new HashMap<String, Integer>();
+				votes.put("funny", 0); votes.put("useful", 0); votes.put("cool", 0);
+				
+				String review_id = Integer.toString(nextReviewId);
+				
+				String text = object.getString("text");
+				
+				double stars = object.getJsonNumber("stars").doubleValue();
+				
+				String user_id = object.getString("user_id");
+				
+				ArrayList<YelpUser> YelpUsers = yelpDB.getYelpUsers();
+				ArrayList<YelpUser> userChecker = (ArrayList<YelpUser>) YelpUsers.stream()
+						.filter(u -> u.getUser_id().equals(user_id))
+						.collect(Collectors.toList());
+				
+				if(userChecker.isEmpty()) {
+					return "ERR: NO_SUCH_USER";
+				}
+				
+				restChecker.get(0).increaseReview_count();
+				userChecker.get(0).increaseReview_count();
+				
+				HashMap<String, Integer> date = JsonParser.getDateHash("date", object);
+				String dateString = object.getString("date");
+				
+				Review newRev = new Review(business_id, votes, review_id, text,
+						stars, user_id, date);
+				
+				ArrayList<Review> Reviews = yelpDB.getReviews();
+				Reviews.add(newRev);
+				yelpDB.setReviews(Reviews);
+				
+				JsonObjectBuilder builder = Json.createObjectBuilder()
+						.add("type", "review")
+						.add("business_id", business_id)
+						.add("votes", hashToJson(votes))
+						.add("review_id", review_id)
+						.add("text", text)
+						.add("stars", BigDecimal.valueOf(stars))
+						.add("user_id", user_id)
+						.add("date", dateString);
+				
+				JsonObject added = builder.build();
+				String jsonString = added.toString();
+				
+				nextReviewId++;
+				
+				return jsonString;
+			//display an error if the json string cannot be recoginized as a review
+			} catch(NullPointerException e) {
+				return "ERR: INVALID_REVIEW_STRING";
+			}
+		
+		// display an error if the request info cannot be recognized as a json string	
+		} catch (JsonException e) {
+			return "ERR: INVALID_REVIEW_STRING";
+		}
+		
 	}
 	
 	private JsonArray arrayToJson(String[] stringArr)
@@ -383,4 +530,9 @@ public class YelpDBServer {
 		}
 	}
 	
+	public static void useAntlr() throws IOException {
+		
+		
+		
+	}
 }

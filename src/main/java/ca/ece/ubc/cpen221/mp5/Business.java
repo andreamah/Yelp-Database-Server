@@ -46,6 +46,12 @@ public class Business {
 		return open;
 	}
 
+	
+	@Override 
+	public String toString()
+	{
+		return new String(name);
+	}
 	/**
 	 * changes the open field of the business to status
 	 * @param open

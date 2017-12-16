@@ -11,7 +11,7 @@ import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 
-public class ReviewParser extends Parser  {
+public class ReviewParser extends JsonParser  {
 	
 	/**
 	 * Parses a JSON file to return a list of review objects with the tags as the fields

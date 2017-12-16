@@ -14,6 +14,19 @@ import java.util.stream.Collectors;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
+import javax.json.JsonException;
+
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.TokenStream;
+import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
+
+import ca.ece.ubc.cpen221.mp5.ANTLR.mp5AntlrLex;
+import ca.ece.ubc.cpen221.mp5.ANTLR.mp5AntlrListenerCollect;
+import ca.ece.ubc.cpen221.mp5.ANTLR.mp5AntlrParse;
+import ca.ece.ubc.cpen221.mp5.ANTLR.mp5AntlrParseListener;
 
 public class YelpDB implements MP5Db<Restaurant> {
 	private ArrayList<Restaurant> Restaurants; //list of Restaurants that exist on Yelp
@@ -55,6 +68,8 @@ public class YelpDB implements MP5Db<Restaurant> {
 	public void setYelpUsers(ArrayList<YelpUser> yelpUsers) {
 		YelpUsers = yelpUsers;
 	}
+	
+	
 
 	/**
 	 * Given a YelpUser, return a list of all Reviews in the database
@@ -238,8 +253,22 @@ public class YelpDB implements MP5Db<Restaurant> {
 	
 	@Override
 	public Set<Restaurant> getMatches(String queryString) {
-		// TODO Auto-generated method stub
-		return null;
+		queryString.trim();
+		
+		CharStream stream = CharStreams.fromString(queryString);
+		mp5AntlrLex lexer = new mp5AntlrLex(stream);
+		TokenStream tokens = new CommonTokenStream(lexer);
+		mp5AntlrParse parser = new mp5AntlrParse(tokens);
+		
+		ParseTree tree = parser.root();
+		ParseTreeWalker walker = new ParseTreeWalker();
+		mp5AntlrParseListener listener = new mp5AntlrListenerCollect(getRestaurants());
+		
+		walker.walk(listener, tree);
+		
+		ArrayList<Restaurant> filtered = ((mp5AntlrListenerCollect)listener).getFilteredList();
+		Set<Restaurant> queriedResults = new HashSet<Restaurant>(filtered);
+		return queriedResults;
 	}
 	
 	@Override

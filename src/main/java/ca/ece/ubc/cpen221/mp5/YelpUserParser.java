@@ -11,7 +11,7 @@ import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 
-public class YelpUserParser extends Parser {
+public class YelpUserParser extends JsonParser {
 	
 	/**
 	 * Parses a JSON file to return a list of Yelp user objects with the tags as the fields
