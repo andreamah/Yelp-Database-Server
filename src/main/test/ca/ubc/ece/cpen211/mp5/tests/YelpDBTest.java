@@ -23,29 +23,30 @@ import ca.ece.ubc.cpen221.mp5.YelpUser;
 
 public class YelpDBTest {
 
+	String[] filler = new String[] {"UBC", "SFU"};
 	
 	@Test
 	public void test1() {
 		Restaurant r1 = new Restaurant(false, null, Math.random()*100, Math.random()*100,
-				null, null, null, null, null, null, null, 0, 0, null, null, 0);
+				null, null, null, null, null, null, null, 0, 0, null, filler, 0);
 		Restaurant r2 = new Restaurant(false, null, Math.random()*100, Math.random()*100,
-				null, null, null, null, null, null, null, 0, 0, null, null, 0);
+				null, null, null, null, null, null, null, 0, 0, null, filler, 0);
 		Restaurant r3 = new Restaurant(false, null, Math.random()*100, Math.random()*100,
-				null, null, null, null, null, null, null, 0, 0, null, null, 0);
+				null, null, null, null, null, null, null, 0, 0, null, filler, 0);
 		Restaurant r4 = new Restaurant(false, null, Math.random()*100, Math.random()*100,
-				null, null, null, null, null, null, null, 0, 0, null, null, 0);
+				null, null, null, null, null, null, null, 0, 0, null, filler, 0);
 		Restaurant r5 = new Restaurant(false, null, Math.random()*100, Math.random()*100,
-				null, null, null, null, null, null, null, 0, 0, null, null, 0);
+				null, null, null, null, null, null, null, 0, 0, null, filler, 0);
 		Restaurant r6 = new Restaurant(false, null, Math.random()*100, Math.random()*100,
-				null, null, null, null, null, null, null, 0, 0, null, null, 0);
+				null, null, null, null, null, null, null, 0, 0, null, filler, 0);
 		Restaurant r7 = new Restaurant(false, null, Math.random()*100, Math.random()*100,
-				null, null, null, null, null, null, null, 0, 0, null, null, 0);
+				null, null, null, null, null, null, null, 0, 0, null, filler, 0);
 		Restaurant r8 = new Restaurant(false, null, Math.random()*100, Math.random()*100,
-				null, null, null, null, null, null, null, 0, 0, null, null, 0);
+				null, null, null, null, null, null, null, 0, 0, null, filler, 0);
 		Restaurant r9 = new Restaurant(false, null, Math.random()*100, Math.random()*100,
-				null, null, null, null, null, null, null, 0, 0, null, null, 0);
+				null, null, null, null, null, null, null, 0, 0, null, filler, 0);
 		Restaurant r10 = new Restaurant(false, null, Math.random()*100, Math.random()*100,
-				null, null, null, null, null, null, null, 0, 0, null, null, 0);
+				null, null, null, null, null, null, null, 0, 0, null, filler, 0);
 		
 		
 		ArrayList<Restaurant> Restaurants = new ArrayList<Restaurant>();
@@ -101,11 +102,11 @@ public class YelpDBTest {
 	@Test
 	public void test2() {
 		Restaurant ra = new Restaurant(false, null, 1.0, 2.0, null, null, "ra", null, null,
-				null, null, 0, 0, null, null, 0);
+				null, null, 0, 0, null, filler, 0);
 		Restaurant rb = new Restaurant(false, null, 3.0, 4.0, null, null, "rb", null, null,
-				null, null, 0, 0, null, null, 0);
+				null, null, 0, 0, null, filler, 0);
 		Restaurant rc = new Restaurant(false, null, 5.0, 6.0, null, null, "rc", null, null,
-				null, null, 0, 0, null, null, 0);
+				null, null, 0, 0, null, filler, 0);
 		
 		ArrayList<Restaurant> Restaurants = new ArrayList<Restaurant>();
 		Restaurants.add(ra); Restaurants.add(rb); Restaurants.add(rc);
@@ -124,11 +125,11 @@ public class YelpDBTest {
 	@Test
 	public void test3() {
 		Restaurant r1 = new Restaurant(false, null, 0, 0, null, "r1", null, null, null,
-				null, null, 0, 0, null, null, 1);
+				null, null, 0, 0, null, filler, 1);
 		Restaurant r2 = new Restaurant(false, null, 0, 0, null, "r2", null, null, null,
-				null, null, 0, 0, null, null, 4);
+				null, null, 0, 0, null, filler, 4);
 		Restaurant r3 = new Restaurant(false, null, 0, 0, null, "r3", null, null, null,
-				null, null, 0, 0, null, null, 10);
+				null, null, 0, 0, null, filler, 10);
 		
 		ArrayList<Restaurant> Restaurants = new ArrayList<Restaurant>();
 		Restaurants.add(r1); Restaurants.add(r2); Restaurants.add(r3);
@@ -145,15 +146,15 @@ public class YelpDBTest {
 	@Test
 	public void test4() {
 		Restaurant r1 = new Restaurant(false, null, 0, 0, null, "r1", null, null, null,
-				null, null, 0, 0, null, null, 1);
+				null, null, 0, 0, null, filler, 1);
 		Restaurant r2 = new Restaurant(false, null, 0, 0, null, "r2", null, null, null,
-				null, null, 0, 0, null, null, 2);
+				null, null, 0, 0, null, filler, 2);
 		Restaurant r3 = new Restaurant(false, null, 0, 0, null, "r3", null, null, null,
-				null, null, 0, 0, null, null, 3);
+				null, null, 0, 0, null, filler, 3);
 		Restaurant r4 = new Restaurant(false, null, 0, 0, null, "r4", null, null, null,
-				null, null, 0, 0, null, null, 4);
+				null, null, 0, 0, null, filler, 4);
 		Restaurant r5 = new Restaurant(false, null, 0, 0, null, "r5", null, null, null,
-				null, null, 0, 0, null, null, 5);
+				null, null, 0, 0, null, filler, 5);
 		
 		ArrayList<Restaurant> Restaurants = new ArrayList<Restaurant>();
 		Restaurants.add(r1); Restaurants.add(r2); Restaurants.add(r3);
@@ -192,9 +193,9 @@ public class YelpDBTest {
 	@Test
 	public void test5() {
 		Restaurant r1 = new Restaurant(false, null, 0, 0, null, "r1", null, null, null,
-				null, null, 0, 0, null, null, 0);
+				null, null, 0, 0, null, filler, 0);
 		Restaurant r2 = new Restaurant(false, null, 0, 0, null, "r2", null, null, null,
-				null, null, 0, 0, null, null, 0);
+				null, null, 0, 0, null, filler, 0);
 		
 		ArrayList<Restaurant> Restaurants = new ArrayList<Restaurant>();
 		Restaurants.add(r1); Restaurants.add(r2);
@@ -228,15 +229,15 @@ public class YelpDBTest {
 	@Test
 	public void test6() {
 		Restaurant centre = new Restaurant(false, null, 0, 0, null, null, null, null,
-				null, null, null, 0, 0, null, null, 0);
+				null, null, null, 0, 0, null, filler, 0);
 		Restaurant r1 = new Restaurant(false, null, 1, 0, null, null, null, null, null,
-				null, null, 0, 0, null, null, 0);
+				null, null, 0, 0, null, filler, 0);
 		Restaurant r2 = new Restaurant(false, null, 3, 4, null, null, null, null, null,
-				null, null, 0, 0, null, null, 0);
+				null, null, 0, 0, null, filler, 0);
 		Restaurant r3 = new Restaurant(false, null, 4, 4, null, null, null, null, null,
-				null, null, 0, 0, null, null, 0);
+				null, null, 0, 0, null, filler, 0);
 		Restaurant r4 = new Restaurant(false, null, 2, 2, null, null, null, null, null,
-				null, null, 0, 0, null, null, 0);
+				null, null, 0, 0, null, filler, 0);
 		
 		ArrayList<Restaurant> Restaurants = new ArrayList<Restaurant>();
 		Restaurants.add(centre);
@@ -256,13 +257,13 @@ public class YelpDBTest {
 	@Test
 	public void test7() {
 		Restaurant r1 = new Restaurant(false, null, 0, 0, null, null, null, null, null,
-				null, null, 5.0, 0, null, null, 0);
+				null, null, 5.0, 0, null, filler, 0);
 		Restaurant r2 = new Restaurant(false, null, 0, 0, null, null, null, null, null,
-				null, null, 4.0, 0, null, null, 0);
+				null, null, 4.0, 0, null, filler, 0);
 		Restaurant r3 = new Restaurant(false, null, 0, 0, null, null, null, null, null,
-				null, null, 4.0, 0, null, null, 0);
+				null, null, 4.0, 0, null, filler, 0);
 		Restaurant r4 = new Restaurant(false, null, 0, 0, null, null, null, null, null,
-				null, null, 1.0, 0, null, null, 0);
+				null, null, 1.0, 0, null, filler, 0);
 		
 		ArrayList<Restaurant> Restaurants = new ArrayList<Restaurant>();
 		Restaurants.add(r1); Restaurants.add(r2); Restaurants.add(r3); Restaurants.add(r4);
@@ -281,19 +282,19 @@ public class YelpDBTest {
 	public void test8() {
 		String[] c1 = {"Restaurants", "pizza", "fastfood"};
 		Restaurant r1 = new Restaurant(false, null, 0, 0, null, null, null, c1, null,
-				null, null, 0, 0, null, null, 0);
+				null, null, 0, 0, null, filler, 0);
 		
 		String[] c2 = {"Restaurants", "burger", "fastfood"};
 		Restaurant r2 = new Restaurant(false, null, 0, 0, null, null, null, c2, null,
-				null, null, 0, 0, null, null, 0);
+				null, null, 0, 0, null, filler, 0);
 		
 		String[] c3 = {"Restaurants", "pizza", "finedining"};
 		Restaurant r3 = new Restaurant(false, null, 0, 0, null, null, null, c3, null,
-				null, null, 0, 0, null, null, 0);
+				null, null, 0, 0, null, filler, 0);
 		
 		String[] c4 = {"Restaurants"};
 		Restaurant r4 = new Restaurant(false, null, 0, 0, null, null, null, c4, null,
-				null, null, 0, 0, null, null, 0);
+				null, null, 0, 0, null, filler, 0);
 		
 		ArrayList<Restaurant> Restaurants = new ArrayList<Restaurant>();
 		Restaurants.add(r1); Restaurants.add(r2); Restaurants.add(r3); Restaurants.add(r4);
@@ -358,9 +359,179 @@ public class YelpDBTest {
 		Reviews.get(0).UpdateVotes(votes);
 		
 		assertEquals(Reviews.get(0).getVotes(),votes);
-		
-		
 	}
+	
+	@Test
+	public void test11() {
+		Restaurant r = new Restaurant(false, null, 0, 0, filler, null, null, filler,
+				null, null, null, 0, 0, null, filler, 0);
+		
+		String[] neighborhood = {"Ladner", "Richmond", "Burnaby"};
+		String[] category = {"Chinese", "Japanese", "Korean"};
+		
+		r.setNeighborhoods(neighborhood);
+		r.setCategories(category);
+		
+		assertFalse(neighborhood == r.getNeighborhoods());
+		assertFalse(category == r.getCategories());
+		
+		for(int i = 0; i < neighborhood.length; i++) {
+			assertEquals(neighborhood[i], r.getNeighborhoods()[i]);
+		}
+		
+		for(int i = 0; i < category.length; i++) {
+			assertEquals(category[i], r.getCategories()[i]);
+		}
+	}
+	
+	@Test
+	public void test12() {
+		Restaurant r1 = new Restaurant(false, null, 91, 0, filler, null, null, filler,
+				null, null, null, 0, 0, null, filler, 0);
+		
+		Restaurant r2 = new Restaurant(false, null, -91, 0, filler, null, null, filler,
+				null, null, null, 0, 0, null, filler, 0);
+		
+		Restaurant r3 = new Restaurant(false, null, 0, 180, filler, null, null, filler,
+				null, null, null, 0, 0, null, filler, 0);
+		
+		Restaurant r4 = new Restaurant(false, null, 0, -180, filler, null, null, filler,
+				null, null, null, 0, 0, null, filler, 0);
+		
+		Restaurant r5 = new Restaurant(false, null, 0, 0, filler, null, null, filler,
+				null, null, null, 0, 0, null, filler, 0);
+		
+		Restaurant r6 = new Restaurant(false, null, 0, 0, filler, null, null, filler,
+				null, null, null, 0, 0, null, filler, 5);
+		
+		assertFalse(r1.checkInvariant()); assertFalse(r2.checkInvariant());
+		assertFalse(r3.checkInvariant()); assertFalse(r4.checkInvariant());
+		assertFalse(r5.checkInvariant()); assertFalse(r6.checkInvariant());
+		
+		Restaurant r7 = new Restaurant(false, null, 90, 180, filler, null, null, filler,
+				null, null, null, 0, 0, null, filler, 1);
+		
+		assertTrue(r7.checkInvariant());
+	}
+
+	@Test
+	public void test13() {
+		HashMap<String, Integer> date = new HashMap<String, Integer>();
+		date.put("year", 2017); date.put("month", 12); date.put("day", 14);
+		
+		Review v1 = new Review(null, null, null, null, 6, null, date);
+		assertFalse(v1.checkInvariant());
+		
+		Review v2 = new Review(null, null, null, null, 0, null, date);
+		assertFalse(v2.checkInvariant());
+		
+		Review v3 = new Review(null, null, null, "hi", 5, null, date);
+		assertTrue(v3.checkInvariant());
+		
+		date.put("year", 2018);
+		assertFalse(v3.checkInvariant());
+		
+		date.put("year", -1);
+		assertFalse(v3.checkInvariant());
+		
+		date.put("month", 0); date.put("year", 2017);
+		assertFalse(v3.checkInvariant());
+		
+		date.put("month", 13);
+		assertFalse(v3.checkInvariant());
+		
+		date.put("day", 32);
+		date.put("month", 1);
+		assertFalse(v3.checkInvariant());
+		
+		date.put("month", 3);
+		assertFalse(v3.checkInvariant());
+		
+		date.put("month", 5);
+		assertFalse(v3.checkInvariant());
+		
+		date.put("month", 7);
+		assertFalse(v3.checkInvariant());
+		
+		date.put("month", 8);
+		assertFalse(v3.checkInvariant());
+		
+		date.put("month", 10);
+		assertFalse(v3.checkInvariant());
+		
+		date.put("month", 12);
+		assertFalse(v3.checkInvariant());
+		
+		date.put("day", 31);
+		date.put("month", 4);
+		assertFalse(v3.checkInvariant());
+		
+		date.put("month", 6);
+		assertFalse(v3.checkInvariant());
+		
+		date.put("month", 9);
+		assertFalse(v3.checkInvariant());
+		
+		date.put("month", 11);
+		assertFalse(v3.checkInvariant());
+		
+		date.put("day", 29); date.put("month", 2);
+		assertFalse(v3.checkInvariant());
+		
+		date.put("year", 1900);
+		assertFalse(v3.checkInvariant());
+		
+		date.put("year", 2017);
+		
+		date.put("day", 28);
+		assertTrue(v3.checkInvariant());
+		
+		date.put("month", 4); date.put("day", 5);
+		assertTrue(v3.checkInvariant());
+		
+		date.put("year", 2016); date.put("month", 2); date.put("day", 29);
+		assertTrue(v3.checkInvariant());
+		
+		assertEquals("hi", v3.getText());
+		
+		assertEquals(2016, v3.getDate().get("year").intValue());
+		assertEquals(2, v3.getDate().get("month").intValue());
+		assertEquals(29, v3.getDate().get("day").intValue());
+	}
+	
+	@Test
+	public void test14() {
+		YelpUser u = new YelpUser("hi", null, "hello", null, 1, 0);
+		
+		HashMap<String, Integer> votes = new HashMap<String, Integer>();
+		votes.put("funny", 1);
+		
+		u.setVotes(votes);
+		
+		assertEquals("hi", u.getUrl());
+		assertEquals("hello", u.getName());
+		assertEquals(1, u.getReview_count());
+		
+		assertEquals(votes.get("funny").intValue(), u.getVotes().get("funny").intValue());	
+	}
+	
+	@Test
+	public void test15() {
+		ArrayList<Restaurant> Restaurants = new ArrayList<Restaurant>();
+		ArrayList<Review> Reviews = new ArrayList<Review>();
+		ArrayList<YelpUser> YelpUsers = new ArrayList<YelpUser>();
+		
+		YelpDB db = new YelpDB(Restaurants, Reviews, YelpUsers);
+		
+		db.setRestaurants(Restaurants);
+		db.setReviews(Reviews);
+		db.setYelpUsers(YelpUsers);
+		
+		assertFalse(Restaurants == db.getRestaurants());
+		assertFalse(Reviews == db.getReviews());
+		assertFalse(YelpUsers == db.getYelpUsers());
+	}
+
 	
 
 }

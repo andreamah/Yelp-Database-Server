@@ -16,7 +16,7 @@ public class User {
 		this.user_id = user_id;
 		this.name = name;
 	}
-	
+		
 	public String getUrl() {
 		return url;
 	}
