@@ -15,12 +15,24 @@ public class Restaurant extends Business{
 		this.stars = stars;
 		this.review_count = review_count;
 		this.setPhoto_url(photo_url);
-		this.setSchools(schools);
+		setSchools(schools);
 		this.price = price;
 	}
-	/**
-	 * @return review count for the restaurant
-	 */
+	
+	public boolean checkInvariant() {		
+		if(
+				(latitude < -90.0 || latitude > 90.0) ||
+				(longitude < -180.0 || longitude > 180.0)  ||
+				(price < 1 || price > 4)
+				) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+	
+
 	public int getReview_count() {
 		return review_count;
 	}
@@ -34,6 +46,10 @@ public class Restaurant extends Business{
 	
 	public void increaseReview_count() {
 		review_count++;
+	}
+	
+	public void updateAverage_stars(double reviewStars) {
+		this.stars = ((stars * (review_count - 1)) + reviewStars) / review_count;
 	}
 	
 	/**
@@ -72,25 +88,5 @@ public class Restaurant extends Business{
 	public void setPhoto_url(String photo_url) {
 		this.photo_url = photo_url;
 	}
-	
-	public String[] getCategories() {
-		//ensure defensive copying
-		String[] newstr = new String[categories.length];
-		for (int i = 0; i < categories.length; i++)
-		{
-			newstr[i] = categories[i];
-		}
-		
-		return newstr;
-	}
 
-	public void setCategories(String[] mcategories) {
-		String[] newstr = new String[mcategories.length];
-		for (int i = 0; i < mcategories.length; i++)
-		{
-			newstr[i] = mcategories[i];
-		}
-		this.categories = newstr;
-	}
-	
 }

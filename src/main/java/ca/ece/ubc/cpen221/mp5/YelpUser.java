@@ -38,6 +38,10 @@ public class YelpUser extends User {
 		review_count++;
 	}
 	
+	public void updateAverage_stars(double reviewStars) {
+		this.average_stars = ((average_stars * (review_count - 1)) + reviewStars) / review_count;
+	}
+	
 	public HashMap<String, Integer> getVotes() {
 		return new HashMap<String, Integer>(votes);
 	}

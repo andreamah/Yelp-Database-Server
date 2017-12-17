@@ -15,7 +15,6 @@ import ca.ece.ubc.cpen221.mp5.Restaurant;
 import ca.ece.ubc.cpen221.mp5.YelpDB;
 import ca.ece.ubc.cpen221.mp5.ANTLR.mp5AntlrParse.AndexprContext;
 import ca.ece.ubc.cpen221.mp5.ANTLR.mp5AntlrParse.AtomContext;
-import ca.ece.ubc.cpen221.mp5.ANTLR.mp5AntlrParse.BusinessidpContext;
 import ca.ece.ubc.cpen221.mp5.ANTLR.mp5AntlrParse.CategorypContext;
 import ca.ece.ubc.cpen221.mp5.ANTLR.mp5AntlrParse.CitypContext;
 import ca.ece.ubc.cpen221.mp5.ANTLR.mp5AntlrParse.IneqContext;
@@ -39,11 +38,6 @@ public class mp5AntlrListenerCollect implements mp5AntlrParseListener {
 	private ArrayList<Restaurant> restaurants;
 	
 	
-	public mp5AntlrListenerCollect(YelpDB db)
-	{
-		this.restaurants = db.getRestaurants();
-	}
-	
 	public mp5AntlrListenerCollect(ArrayList<Restaurant> rests)
 	{
 		this.restaurants = rests;
@@ -58,34 +52,22 @@ public class mp5AntlrListenerCollect implements mp5AntlrParseListener {
 	}
 	
 	@Override
-	public void enterEveryRule(ParserRuleContext arg0) {
-		
-	}
+	public void enterEveryRule(ParserRuleContext arg0) {}
 
 	@Override
-	public void exitEveryRule(ParserRuleContext arg0) {
-		/*
-		System.out.println(stack.size());
-		System.out.println(arg0.getChild(0).toString());
-		*/
-	}
+	public void exitEveryRule(ParserRuleContext arg0) {}
 
 	@Override
-	public void visitErrorNode(ErrorNode arg0) {
-		
-	}
+	public void visitErrorNode(ErrorNode arg0) {}
 
 	@Override
-	public void visitTerminal(TerminalNode arg0) {
-		
-	}
+	public void visitTerminal(TerminalNode arg0) {}
 
 	@Override
 	public void enterRoot(RootContext ctx) {}
 
 	@Override
 	public void exitRoot(RootContext ctx) {
-		assert stack.size() == 1;
 		filteredList = stack.pop();
 	}
 
@@ -286,7 +268,6 @@ public class mp5AntlrListenerCollect implements mp5AntlrParseListener {
 	public void exitIsopen(IsopenContext ctx) {
 
 		String tokenString = ctx.getChild(0).toString();
-		System.out.println(tokenString);
 		ArrayList<Restaurant> rests = getYelpRestaurants();
 		
 		if (tokenString.equals("true")) {
@@ -384,41 +365,4 @@ public class mp5AntlrListenerCollect implements mp5AntlrParseListener {
 		
 		stack.push(rests);
 	}
-
-	@Override
-	public void enterBusinessidp(BusinessidpContext ctx) { }
-
-	@Override
-	public void exitBusinessidp(BusinessidpContext ctx) {
-		String tokenString = ctx.STR().toString();
-		
-		ArrayList<Restaurant> rests = getYelpRestaurants();
-		rests = (ArrayList<Restaurant>) rests.stream()
-				.filter(r -> (r.getBusiness_id()).equals(tokenString))
-				.collect(Collectors.toList());
-		
-		stack.push(rests);
-
-	}
-	/*
-	public ArrayList<Restaurant> isInList(String[] stringList, String tokenString)
-	{
-		ArrayList<Restaurant> rests = getYelpRestaurants();
-		rests = (ArrayList<Restaurant>) rests.stream()
-				.filter(r -> Arrays.asList(stringList).contains(tokenString))
-				.collect(Collectors.toList());
-	}
-
-	
-
-	
-	*/
-
-	
-
-	
-		
-	
-	
-
 }

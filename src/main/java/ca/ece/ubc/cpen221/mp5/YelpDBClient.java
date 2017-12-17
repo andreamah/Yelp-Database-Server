@@ -38,21 +38,4 @@ public class YelpDBClient {
 		socket.close();
 	}
 	
-	public static void main(String[] args) {
-		try {
-			YelpDBClient client = new YelpDBClient("localhost", YelpDBServer.YELPDB_PORT);
-			
-			String request = "GETRESTAURANT h_we4E3zofRTf4G0JTEF0A";
-			
-			client.sendRequest(request);
-			System.out.println("request: " + request);
-			
-			String reply = client.getReply();
-			System.out.println("reply: " + reply);
-			
-			client.close();
-		} catch(IOException ioe) {
-			ioe.printStackTrace();
-		}
-	}
 }

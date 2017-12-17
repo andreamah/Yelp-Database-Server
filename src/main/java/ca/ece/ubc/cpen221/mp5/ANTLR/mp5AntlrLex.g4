@@ -22,10 +22,8 @@ PRICE: 'price';
 LPAREN : '(';
 RPAREN : ')';
 REVIEWCOUNT : 'review_count';
-BUSINESSID: 'business_id';
-STR: ([a-zA-Z]*(NUM)+[a-zA-Z0-9]*)+;
 
 WS : [ \t\r\n]+ -> skip; // skip spaces, tabs, newlines
 mode ISLAND;
-STRING : ([a-zA-Z0-9]+(WSp)*)+  -> mode(DEFAULT_MODE);
+STRING : ([!-'*-~]+(WSp)*)+  -> mode(DEFAULT_MODE);
 WSp : [ \t\r\n]+;

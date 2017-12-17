@@ -1,17 +1,12 @@
 // Generated from mp5AntlrParse.g4 by ANTLR 4.7.1
 package ca.ece.ubc.cpen221.mp5.ANTLR;
-import java.util.ArrayList;
-
 import org.antlr.v4.runtime.tree.ParseTreeListener;
-
-import ca.ece.ubc.cpen221.mp5.Restaurant;
 
 /**
  * This interface defines a complete listener for a parse tree produced by
  * {@link mp5AntlrParse}.
  */
 public interface mp5AntlrParseListener extends ParseTreeListener {
-	
 	/**
 	 * Enter a parse tree produced by {@link mp5AntlrParse#root}.
 	 * @param ctx the parse tree
@@ -172,15 +167,4 @@ public interface mp5AntlrParseListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSchoolsp(mp5AntlrParse.SchoolspContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link mp5AntlrParse#businessidp}.
-	 * @param ctx the parse tree
-	 */
-	void enterBusinessidp(mp5AntlrParse.BusinessidpContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link mp5AntlrParse#businessidp}.
-	 * @param ctx the parse tree
-	 */
-	void exitBusinessidp(mp5AntlrParse.BusinessidpContext ctx);
-
 }
