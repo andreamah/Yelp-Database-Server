@@ -192,23 +192,23 @@ public class mp5AntlrListenerCollect implements mp5AntlrParseListener {
 		String comparator = ineq.pop();
 		ArrayList<Restaurant> rests = getYelpRestaurants();
 		
-		if (comparator.equals("<")) {
+		if ("<".equals(comparator)) {
 			rests = (ArrayList<Restaurant>) rests.stream()
 					.filter(r -> r.getStars() < comparedNum)
 					.collect(Collectors.toList());
-		} else if (comparator.equals("<=")) {
+		} else if ("<=".equals(comparator)) {
 			rests = (ArrayList<Restaurant>) rests.stream()
 					.filter(r -> r.getStars() <= comparedNum)
 					.collect(Collectors.toList());
-		} else if (comparator.equals("=")) {
+		} else if ("=".equals(comparator)) {
 			rests = (ArrayList<Restaurant>) rests.stream()
 					.filter(r -> r.getStars() == comparedNum)
 					.collect(Collectors.toList());
-		} else if (comparator.equals(">=")) {
+		} else if (">=".equals(comparator)) {
 			rests = (ArrayList<Restaurant>) rests.stream()
 					.filter(r -> r.getStars() >= comparedNum)
 					.collect(Collectors.toList());
-		} else if (comparator.equals(">")) {
+		} else if (">".equals(comparator)) {
 			rests = (ArrayList<Restaurant>) rests.stream()
 					.filter(r -> r.getStars() > comparedNum)
 					.collect(Collectors.toList());
@@ -228,23 +228,23 @@ public class mp5AntlrListenerCollect implements mp5AntlrParseListener {
 		String comparator = ineq.pop();
 		ArrayList<Restaurant> rests = getYelpRestaurants();
 		
-		if (comparator.equals("<")) {
+		if ("<".equals(comparator)) {
 			rests = (ArrayList<Restaurant>) rests.stream()
 					.filter(r -> r.getPrice() < comparedNum)
 					.collect(Collectors.toList());
-		} else if (comparator.equals("<=")) {
+		} else if ("<=".equals(comparator)) {
 			rests = (ArrayList<Restaurant>) rests.stream()
 					.filter(r -> r.getPrice() <= comparedNum)
 					.collect(Collectors.toList());
-		} else if (comparator.equals("=")) {
+		} else if ("=".equals(comparator)) {
 			rests = (ArrayList<Restaurant>) rests.stream()
 					.filter(r -> r.getPrice() == comparedNum)
 					.collect(Collectors.toList());
-		} else if (comparator.equals(">=")) {
+		} else if (">=".equals(comparator)) {
 			rests = (ArrayList<Restaurant>) rests.stream()
 					.filter(r -> r.getPrice() >= comparedNum)
 					.collect(Collectors.toList());
-		} else if (comparator.equals(">")) {
+		} else if (">".equals(comparator)) {
 			rests = (ArrayList<Restaurant>) rests.stream()
 					.filter(r -> r.getPrice() > comparedNum)
 					.collect(Collectors.toList());
@@ -269,11 +269,11 @@ public class mp5AntlrListenerCollect implements mp5AntlrParseListener {
 		String tokenString = ctx.getChild(0).toString();
 		ArrayList<Restaurant> rests = getYelpRestaurants();
 		
-		if (tokenString.equals("true")) {
+		if ("true".equals(tokenString)) {
 			rests = (ArrayList<Restaurant>) rests.stream()
 					.filter(r -> r.isOpen())
 					.collect(Collectors.toList());
-		} else if (tokenString.equals("false")) {
+		} else if ("false".equals(tokenString)) {
 			rests = (ArrayList<Restaurant>) rests.stream()
 					.filter(r -> (!r.isOpen()))
 					.collect(Collectors.toList());
@@ -323,27 +323,29 @@ public class mp5AntlrListenerCollect implements mp5AntlrParseListener {
 		String comparator = ineq.pop();
 		ArrayList<Restaurant> rests = getYelpRestaurants();
 		
-		if (comparator.equals("<")) {
+		
+		if ("<".equals(comparator)) {
 			rests = (ArrayList<Restaurant>) rests.stream()
 					.filter(r -> r.getReview_count() < comparedNum)
 					.collect(Collectors.toList());
-		} else if (comparator.equals("<=")) {
+		} else if ("<=".equals(comparator)) {
 			rests = (ArrayList<Restaurant>) rests.stream()
 					.filter(r -> r.getReview_count() <= comparedNum)
 					.collect(Collectors.toList());
-		} else if (comparator.equals("=")) {
+		} else if ("=".equals(comparator)) {
 			rests = (ArrayList<Restaurant>) rests.stream()
 					.filter(r -> r.getReview_count() == comparedNum)
 					.collect(Collectors.toList());
-		} else if (comparator.equals(">=")) {
+		} else if (">=".equals(comparator)) {
 			rests = (ArrayList<Restaurant>) rests.stream()
 					.filter(r -> r.getReview_count() >= comparedNum)
 					.collect(Collectors.toList());
-		} else if (comparator.equals(">")) {
+		} else if (">".equals(comparator)) {
 			rests = (ArrayList<Restaurant>) rests.stream()
 					.filter(r -> r.getReview_count() > comparedNum)
 					.collect(Collectors.toList());
-		}
+		} 
+		
 		
 		stack.push(rests);
 		
