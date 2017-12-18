@@ -12,7 +12,6 @@ import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import ca.ece.ubc.cpen221.mp5.Restaurant;
-import ca.ece.ubc.cpen221.mp5.YelpDB;
 import ca.ece.ubc.cpen221.mp5.ANTLR.mp5AntlrParse.AndexprContext;
 import ca.ece.ubc.cpen221.mp5.ANTLR.mp5AntlrParse.AtomContext;
 import ca.ece.ubc.cpen221.mp5.ANTLR.mp5AntlrParse.CategorypContext;

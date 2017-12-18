@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
-import javax.json.JsonException;
 
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
@@ -68,8 +67,6 @@ public class YelpDB implements MP5Db<Restaurant> {
 	public void setYelpUsers(ArrayList<YelpUser> yelpUsers) {
 		YelpUsers = yelpUsers;
 	}
-	
-	
 
 	/**
 	 * Given a YelpUser, return a list of all Reviews in the database
