@@ -1,6 +1,14 @@
 package ca.ece.ubc.cpen221.mp5;
 
 public class Restaurant extends Business{
+	
+	/**
+	 * Rep Invariant:
+	 * - 1 <= stars <= 5
+	 * - review_count >= 0
+	 * - photo_url of one restaurant cannot be the photo_url of another restaurant
+	 * - 1 <= price <= 4
+	 */
 
 	private double stars; //represents the rating of the Restaurant's overall quality
 	private int review_count; // the number of Yelp reviews this Restaurant has been written

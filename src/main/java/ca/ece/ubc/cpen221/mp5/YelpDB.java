@@ -28,6 +28,17 @@ import ca.ece.ubc.cpen221.mp5.ANTLR.mp5AntlrParse;
 import ca.ece.ubc.cpen221.mp5.ANTLR.mp5AntlrParseListener;
 
 public class YelpDB implements MP5Db<Restaurant> {
+	/**
+	 * Rep Invariant:
+	 * - if for some review rev, Reviews.contains(rev)
+	 *     =>	there exists some restaurant res in Restaurants such that res.getBusiness_id().equals(rev.getBusiness_id())
+	 *     	&&	there exists some user u in YelpUsers such that u.getUser_id().equals(rev.getUser_id())
+	 * - for each restaurant res, there should be res.getReview_count() reviews in Reviews such that
+	 * 		rev.getBusiness_id().equals(res.getBusiness_id())
+	 * - for each yelp user u, there should be u.getReview_count() reviews in Reviews such that
+	 * 		rev.getBusiness_id().equals(u.getBusiness_id())
+	 */
+	
 	private ArrayList<Restaurant> Restaurants; //list of Restaurants that exist on Yelp
 	private ArrayList<Review> Reviews; //list of Reviews that exist on Yelp
 	private ArrayList<YelpUser> YelpUsers; //list of YelpUsers that exist on Yelp
@@ -248,23 +259,57 @@ public class YelpDB implements MP5Db<Restaurant> {
 		return c1.size() >= 2;
 	}
 	
+	/**
+	 * getMatches filters the current list of restaurants based on a query string
+	 * example of query string:
+	 * in(Telegraph Ave) && (category(Chinese) || category(Italian)) && price <= 2
+	 * 
+	 * the keywords using the "keyword(string)" layout can be the following: 
+	 * - in: filters by neighborhood field
+	 * - category: filters by category field
+	 * - name: filters by name field
+	 * - open: filters by 'true' or 'false' in open boolean
+	 * - state: filters by state field 
+	 * - city: filters by city field
+	 * - schools: filters by schools field
+	 * 
+	 * the keywords using the "keyword INEQUALITY number" layout can be the following: 
+	 * - rating: filters by stars field
+	 * - review_count: filter by review_count field
+	 * - price: filter by price field
+	 * 
+	 * @param queryString such that it specifies the filtering performed on the list of restaurants 
+	 * and follows the layout outlined above
+	 * 
+	 * @return Set<Restaurant> that is queried for based on the queryString
+	 */
+	
 	@Override
 	public Set<Restaurant> getMatches(String queryString) {
+		//trim the querystring in case of whitespace
 		queryString.trim();
 		
+		//take the querystring into a stream to make a new lexer and parser from it and recieve the tokens from it
 		CharStream stream = CharStreams.fromString(queryString);
 		mp5AntlrLex lexer = new mp5AntlrLex(stream);
 		TokenStream tokens = new CommonTokenStream(lexer);
 		mp5AntlrParse parser = new mp5AntlrParse(tokens);
 		
+		//make a parse tree and walker method
 		ParseTree tree = parser.root();
 		ParseTreeWalker walker = new ParseTreeWalker();
+		
+		//make a new listener out of custom lister class
 		mp5AntlrParseListener listener = new mp5AntlrListenerCollect(getRestaurants());
 		
+		//use walker to walk through the tree with the custom listener
 		walker.walk(listener, tree);
 		
+		//retrieve the array list of filtered restaurants and create a new set from it
 		ArrayList<Restaurant> filtered = ((mp5AntlrListenerCollect)listener).getFilteredList();
 		Set<Restaurant> queriedResults = new HashSet<Restaurant>(filtered);
+		
+		//return final set
 		return queriedResults;
 	}
 	

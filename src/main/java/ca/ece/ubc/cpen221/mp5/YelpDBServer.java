@@ -23,6 +23,11 @@ import javax.json.JsonObjectBuilder;
 import javax.json.JsonReader;
 
 public class YelpDBServer {
+	/**
+	 * Rep Invariant:
+	 * - YelpDB should initially and always have the restaurants, users, and reviews specified 
+	 * in restaurants.json, reviews.json, and users.json
+	 */
 
 	public static final int YELPDB_PORT = 4949;
 	public static final int REQUEST_HANDLE = 0;
